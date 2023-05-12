@@ -11,3 +11,7 @@ app.get('/', function(req, res){
 let server = app.listen(8888, function(){
     console.log('App server is running on port 8888');
 });
+
+app.use(express.static(__dirname + '/dist'));
+
+res.sendFile(__dirname + '/dist/index.html')
