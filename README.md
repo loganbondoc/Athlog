@@ -1,2 +1,3 @@
-# lbon6240-tracker
-My tracker application for the DECO2017 (Advanced Web Design) Assessment
+# Node Server
+
+This is a demo application running on a basic node server using the express framework.

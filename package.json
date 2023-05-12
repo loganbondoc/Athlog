@@ -1,20 +1,13 @@
 {
-  "name": "lbon6240-tracker",
+  "name": "deco2017-node",
   "version": "1.0.0",
-  "description": "Web application for tracking exercise",
-  "main": "server.js",
+  "description": "Web application running on a node server",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/loganbondoc/lbon6240-tracker.git"
-  },
-  "author": "Logan Bondoc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/loganbondoc/lbon6240-tracker/issues"
-  },
-  "homepage": "https://github.com/loganbondoc/lbon6240-tracker#readme"
+  "author": "Rob Dongas",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
