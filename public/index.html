@@ -4,11 +4,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node Server</title>
+    <title>Athlog</title>
     <link rel="stylesheet" href="scss/main.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <header> </header>
+    <nav>
+        <div class = "navbar-wrapper">
+            <button id = "defaultOpen" class = "tablinks" onclick="openPage(event, 'home')">
+                <h1>Home</h1>
+            </button>
+            <button class = "tablinks" onclick="openPage(event, 'new-session')">
+                <h1>New Session</h1>
+            </button>
+            <button class = "tablinks" onclick="openPage(event, 'past-session')">
+                <h1>Past Sessions</h1>
+            </button>
+        </div>
+    </nav>
+
+    <section id = "home" class = "tabcontent">
+        <h1>Welcome to Athlog!</h1>
+        <h3>This web application is designed to help you reach your goals by tracking your progress!</h3>
+        <br>
+        <h3>There are four workout programs, each designed to target a specific muscle group</h3>
+    </section>
     
+    <section id = "new-session" class = "tabcontent">
+        <h1>New Session</h1>
+        <form>
+            <label for="name">Name:</label><br> 
+            <input type="text" id="name" name="name"><br>
+            
+            <h3>What muscle group are you working today?</h3>
+            <input type="radio" id="push-arms" name="workout-type" value="Push-Arms">
+            <label for="push-arms">Push-Arms</label><br>
+            <input type="radio" id="pull-arms" name="workout-type" value="Pull-Arms">
+            <label for="pull-arms">Pull-Arms</label><br>
+            <input type="radio" id="push-legs" name="workout-type" value="Push-Legs">
+            <label for="push-legs">Push-Legs</label><br>
+            <input type="radio" id="pull-legs" name="workout-type" value="Pull-Legs">
+            <label for="pull-legs">Pull-Legs</label><br>
+
+            <h3>Intensity</h3>
+            <input type="radio" id="light" name="intensity" value="Light">
+            <label for="light">Light</label><br>
+            <input type="radio" id="moderate" name="intensity" value="Moderate">
+            <label for="moderate">Moderate</label><br>
+            <input type="radio" id="intense" name="intensity" value="Intense">
+            <label for="intense">Intense</label><br>
+
+            <h3>What is your competency level for this muscle group?</h3>
+            <input type="radio" id="beginner" name="competency" value="Beginner">
+            <label for="beginner">Beginner</label><br>
+            <input type="radio" id="intermediate" name="competency" value="Intermediate">
+            <label for="intermediate">Intermediate</label><br>
+            <input type="radio" id="advanced" name="competency" value="Advanced">
+            <label for="advanced">Advanced</label><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <section id = "tracker">
+        <h1>Go for it name!</h1>
+        <div id = "timer">
+            <form>
+                <h3>Reps</h3>
+                <input type="submit" value="Submit & Rest">
+            </form>
+        </div>
+        <div id = "rep-table"></div>
+    </section>
+    
+    <section id = "past-session" class = "tabcontent">
+        <h1>Past Session</h1>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
