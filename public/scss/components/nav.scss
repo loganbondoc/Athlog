@@ -1,0 +1,33 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30%;
+}
+
+.logo {
+    margin-top: 15%;
+}
+
+.tablinks {
+    display: flex;
+    flex-direction: row;
+}
+
+// fade in can be attributed to https://www.w3schools.com/howto/howto_js_tabs.asp
+.tabcontent {
+    animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
+  }
+  
+  /* Go from zero to full opacity */
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

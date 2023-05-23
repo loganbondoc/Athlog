@@ -5,24 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Athlog</title>
-    <link rel="stylesheet" href="scss/main.scss" />
+    <link rel="stylesheet" href="scss/main.scss"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header> </header>
     <nav>
+        <h1 class = "logo"><span class="white">Ath</span><span class="purple">log</span></h1>
         <div class = "navbar-wrapper">
             <button id = "defaultOpen" class = "tablinks" onclick="openPage(event, 'home')">
-                <h1>Home</h1>
+                <img src="images/home.svg" alt="home-icon">
+                <h3>Home</h3>
             </button>
             <button class = "tablinks" onclick="openPage(event, 'new-session')">
-                <h1>New Session</h1>
+                <img src="images/edit.svg" alt="write-icon">
+                <h3>New Session</h3>
             </button>
             <button class = "tablinks" onclick="openPage(event, 'past-session')">
-                <h1>Past Sessions</h1>
+                <img src="images/clipboard.svg" alt="clipboard-icon">
+                <h3>Past Sessions</h3>
             </button>
         </div>
     </nav>
@@ -70,7 +73,7 @@
         </form>
     </section>
 
-    <section id = "tracker">
+    <section id = "tracker" class = "tabcontent">
         <h1>Go for it name!</h1>
         <div id = "timer">
             <form>

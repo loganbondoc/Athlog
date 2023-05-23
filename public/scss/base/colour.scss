@@ -1,0 +1,29 @@
+$color-purple: #8E84E0;
+$color-navy: #4A4661;
+$color-deep-grey: #B6B2CC;
+$color-light-grey: #EFEFEF;
+
+nav {
+    background-color: $color-navy;
+    
+    button{
+        background-color: transparent;
+        color: white;
+        border: none;
+    }
+
+}
+
+.logo .white{
+    color: white;
+}
+
+.logo .purple{
+    color: $color-purple;
+}
+
+.tabcontent {
+    background-color: $color-light-grey;
+}
+
+

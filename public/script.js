@@ -1,5 +1,26 @@
-// navbar code adapted from: https://www.w3schools.com/howto/howto_js_tabs.asp
+// classes
+class Session {
+    constructor(name, category, intensity, level){
+        this.name = name;
+        this.category = category;
+        this.intensity = intensity;
+        this.level = level;
+        
+        //auto generated attributes
+        exercises = [];
+        //date
+        //id
+    }
+}
 
+class Exercise {
+    constructor(name, reps){
+        this.name = name;
+        this.reps = reps;
+    }
+}
+
+// navbar code adapted from: https://www.w3schools.com/howto/howto_js_tabs.asp
 function openPage(evt, pageName) {
     // Declare all variables
     var i, tabcontent, tablinks;

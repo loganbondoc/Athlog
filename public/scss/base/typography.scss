@@ -1,0 +1,33 @@
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+h1, h2, h3, h4 {
+    font-family: 'saira';
+    font-weight: $font-weight-medium;
+}
+
+// font sizing
+h1 {
+    font-size: 50px;
+    font-weight: $font-weight-semibold;
+}
+
+h2 {
+    font-size: 37px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+// navbar typography styling
+
+.logo {
+    font-family: 'Orbitron';
+    font-weight: $font-weight-semibold;
+}
+
+.navbar-wrapper button {
+    font-weight: $font-weight-medium;
+}
