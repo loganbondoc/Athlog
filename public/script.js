@@ -6,17 +6,16 @@ var sessionId;
 
 // classes
 class Session {
-    constructor(id, name, category, intensity, competency){
+    constructor(id, name, category, intensity, competency, date){
         this.id = id;
         this.name = name;
         this.category = category;
         this.intensity = intensity;
         this.competency = competency;
+        this.date = date;
         
         //auto generated attributes
         // exercises = [];
-        //date
-        //id
     }
 
     addExercise(exercise){
@@ -81,10 +80,11 @@ function generateSession() {
   let intensity = document.getElementById("intensity");
   let competency = document.getElementById("competency");
 
-  // sessionId = name + " " + category;
+  sessionId = numSessions + "-" + name + "-" + category;
+  date = new Date();
 
-  sessionId = new Session(sessionId, name, category, intensity, competency);
-  sessions.push(sessionId);
+  let currentSession = new Session(sessionId, name, category, intensity, competency, date);
+  sessions.push(currentSession);
   numSessions += 1;
 
   console.log(sessions);
