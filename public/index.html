@@ -57,20 +57,20 @@
         </header>
         <form id = "session-form">
             <label for="name">Name:</label><br> 
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" required><br>
             
             <h3>What muscle group are you working today?</h3>
-            <input type="radio" id="push-arms" name="workout-type" value="Push-Arms">
+            <input type="radio" id="push-arms" name="category" value="Push-Arms" required>
             <label for="push-arms">Push-Arms</label><br>
-            <input type="radio" id="pull-arms" name="workout-type" value="Pull-Arms">
+            <input type="radio" id="pull-arms" name="category" value="Pull-Arms">
             <label for="pull-arms">Pull-Arms</label><br>
-            <input type="radio" id="push-legs" name="workout-type" value="Push-Legs">
+            <input type="radio" id="push-legs" name="category" value="Push-Legs">
             <label for="push-legs">Push-Legs</label><br>
-            <input type="radio" id="pull-legs" name="workout-type" value="Pull-Legs">
+            <input type="radio" id="pull-legs" name="category" value="Pull-Legs">
             <label for="pull-legs">Pull-Legs</label><br>
 
             <h3>Intensity</h3>
-            <input type="radio" id="light" name="intensity" value="Light">
+            <input type="radio" id="light" name="intensity" value="Light" required>
             <label for="light">Light</label><br>
             <input type="radio" id="moderate" name="intensity" value="Moderate">
             <label for="moderate">Moderate</label><br>
@@ -78,7 +78,7 @@
             <label for="intense">Intense</label><br>
 
             <h3>What is your competency level for this muscle group?</h3>
-            <input type="radio" id="beginner" name="competency" value="Beginner">
+            <input type="radio" id="beginner" name="competency" value="Beginner" required>
             <label for="beginner">Beginner</label><br>
             <input type="radio" id="intermediate" name="competency" value="Intermediate">
             <label for="intermediate">Intermediate</label><br>

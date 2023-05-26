@@ -1,25 +1,42 @@
 // variables for forms
 const sessionForm = document.getElementById("session-form");
+var sessions = [];
+var numSessions = 0;
+var sessionId;
 
 // classes
 class Session {
-    constructor(name, category, intensity, level){
+    constructor(id, name, category, intensity, competency){
+        this.id = id;
         this.name = name;
         this.category = category;
         this.intensity = intensity;
-        this.level = level;
+        this.competency = competency;
         
         //auto generated attributes
-        exercises = [];
+        // exercises = [];
         //date
         //id
+    }
+
+    addExercise(exercise){
+      ;
     }
 }
 
 class Exercise {
-    constructor(name, reps){
+    constructor(name){
         this.name = name;
-        this.reps = reps;
+        reps = [];
+        rests = [];
+    }
+
+    addReps(reps){
+      ;
+    }
+
+    addRest(rest){
+      ;
     }
 }
 
@@ -48,9 +65,28 @@ function openPage(evt, pageName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-// function to validate form
+
 
 // function to switch to from new session form to tracker
-function submitForm() {
-  
+sessionForm.addEventListener("submit", generateSession());
+
+function generateSession() {
+  // get all attributes from the form
+  // generate a unique id
+  // create a new session, with the id as its name
+  // add it to an array of all sessions
+
+  let name = document.getElementById("name");
+  let category = document.getElementById("category");
+  let intensity = document.getElementById("intensity");
+  let competency = document.getElementById("competency");
+
+  // sessionId = name + " " + category;
+
+  sessionId = new Session(sessionId, name, category, intensity, competency);
+  sessions.push(sessionId);
+  numSessions += 1;
+
+  console.log(sessions);
 }
+
