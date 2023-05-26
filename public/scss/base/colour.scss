@@ -1,10 +1,14 @@
-$color-purple: #8E84E0;
-$color-navy: #4A4661;
-$color-deep-grey: #B6B2CC;
-$color-light-grey: #EFEFEF;
+$purple: #8E84E0;
+$navy: #4A4661;
+$deep-grey: #B6B2CC;
+$light-grey: #EFEFEF;
+
+body {
+    background-color: $light-grey;
+}
 
 nav {
-    background-color: $color-navy;
+    background-color: $navy;
     
     button{
         background-color: transparent;
@@ -12,18 +16,52 @@ nav {
         border: none;
     }
 
+    button.active {
+        svg{
+            stroke: $purple;
+        }
+
+        .line {
+            background-color: $purple;
+            color: $purple;
+        }
+        
+    }
+
+    button:hover {
+        .line {
+            background-color: $purple;
+            color: $purple;
+        }
+    }
 }
 
-.logo .white{
-    color: white;
-}
+.logo {
+    .white{
+        color: white;
+    }
 
-.logo .purple{
-    color: $color-purple;
+    .purple{
+        color: $purple;
+    }
 }
 
 .tabcontent {
-    background-color: $color-light-grey;
+    background-color: $light-grey;
 }
 
+.line {
+    background-color: $navy;
+    color: $navy;
+}
 
+// for new session form
+
+input[type=text] {
+    background-color: $light-grey;
+}
+
+input[type=text]:focus {
+    outline: none;
+    border-color: $purple;
+}

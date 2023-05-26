@@ -53,7 +53,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 36px;
   font-weight: 600;
 }
 
@@ -62,7 +62,7 @@ h2 {
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 16px;
 }
 
 .logo {
@@ -74,12 +74,29 @@ h3 {
   font-weight: 500;
 }
 
+.navbar-wrapper button:hover h3, .navbar-wrapper button.active h3 {
+  font-weight: 700;
+}
+
 body {
   grid-template: ". ." 1fr
-  / .5fr 1.5fr;
+  / .4fr 1.6fr;
   grid-auto-flow: row;
   gap: 0;
   display: grid;
+}
+
+.tabcontent {
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+header {
+  margin-bottom: 5%;
+}
+
+body {
+  background-color: #efefef;
 }
 
 nav {
@@ -90,6 +107,15 @@ nav button {
   color: #fff;
   background-color: #0000;
   border: none;
+}
+
+nav button.active svg {
+  stroke: #8e84e0;
+}
+
+nav button.active .line, nav button:hover .line {
+  color: #8e84e0;
+  background-color: #8e84e0;
 }
 
 .logo .white {
@@ -104,6 +130,20 @@ nav button {
   background-color: #efefef;
 }
 
+.line {
+  color: #4a4661;
+  background-color: #4a4661;
+}
+
+input[type="text"] {
+  background-color: #efefef;
+}
+
+input[type="text"]:focus {
+  border-color: #8e84e0;
+  outline: none;
+}
+
 nav {
   flex-direction: column;
   align-items: center;
@@ -111,9 +151,11 @@ nav {
 }
 
 .navbar-wrapper {
+  width: 100%;
+  height: 50%;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
   margin-top: 30%;
   display: flex;
 }
@@ -123,8 +165,30 @@ nav {
 }
 
 .tablinks {
+  width: 100%;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   display: flex;
+}
+
+.tablinks svg {
+  width: 25%;
+  height: auto;
+  margin-left: 5%;
+  margin-right: 2.5%;
+}
+
+.tablinks .tabwrapper {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.tablinks .tabwrapper .line {
+  height: 3.5px;
+  width: 100%;
 }
 
 .tabcontent {
@@ -139,6 +203,11 @@ nav {
   to {
     opacity: 1;
   }
+}
+
+input[type="text"] {
+  border-radius: 37px;
+  padding: 5px 10px;
 }
 
 /*# sourceMappingURL=index.c74267d1.css.map */

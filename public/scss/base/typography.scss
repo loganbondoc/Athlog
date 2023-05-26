@@ -9,7 +9,7 @@ h1, h2, h3, h4 {
 
 // font sizing
 h1 {
-    font-size: 50px;
+    font-size: 36px;
     font-weight: $font-weight-semibold;
 }
 
@@ -18,7 +18,7 @@ h2 {
 }
 
 h3 {
-    font-size: 32px;
+    font-size: 16px;
 }
 
 // navbar typography styling
@@ -28,6 +28,21 @@ h3 {
     font-weight: $font-weight-semibold;
 }
 
-.navbar-wrapper button {
-    font-weight: $font-weight-medium;
+.navbar-wrapper {
+    button {
+        font-weight: $font-weight-medium;
+    }
+
+    button:hover {
+        h3 {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    button.active {
+        h3 {
+            font-weight: $font-weight-bold;
+        }
+    }
+
 }

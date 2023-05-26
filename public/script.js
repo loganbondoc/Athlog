@@ -1,3 +1,6 @@
+// variables for forms
+const sessionForm = document.getElementById("session-form");
+
 // classes
 class Session {
     constructor(name, category, intensity, level){
@@ -44,3 +47,10 @@ function openPage(evt, pageName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+// function to validate form
+
+// function to switch to from new session form to tracker
+function submitForm() {
+  
+}

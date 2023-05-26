@@ -5,10 +5,12 @@ nav {
 }
 
 .navbar-wrapper {
+    width: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: flex-start;
+    justify-content: space-around;
     margin-top: 30%;
 }
 
@@ -19,6 +21,28 @@ nav {
 .tablinks {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    svg {
+        margin-right: 2.5%;
+        margin-left: 5%;
+        width: 25%;
+        height: auto;
+    }
+
+    .tabwrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .line {
+            height: 3.5px;
+            width: 100%;
+        }
+    }
 }
 
 // fade in can be attributed to https://www.w3schools.com/howto/howto_js_tabs.asp
