@@ -1,8 +1,12 @@
 // variables for forms
 const sessionForm = document.getElementById("session-form");
+const trackerPage = document.getElementById("tracker");
+const newSessionPage = document.getElementById("new-session");
+
 var sessions = [];
 var numSessions = 0;
 var sessionId;
+var sessionInProgress = false;
 
 // classes
 class Session {
@@ -63,11 +67,11 @@ function openPage(evt, pageName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
-
-
+trackerPage.style.display = "none";
 
 // function to switch to from new session form to tracker
-sessionForm.addEventListener("submit", generateSession());
+sessionForm.addEventListener("submit", generateSession);
+sessionForm.addEventListener("submit", changeSessionPage);
 
 function generateSession() {
   // get all attributes from the form
@@ -75,18 +79,30 @@ function generateSession() {
   // create a new session, with the id as its name
   // add it to an array of all sessions
 
-  let name = document.getElementById("name");
-  let category = document.getElementById("category");
-  let intensity = document.getElementById("intensity");
-  let competency = document.getElementById("competency");
+  event.preventDefault();
+  let name = document.getElementById("name").value;
+  // let category = document.getElementById("category");
+  // let intensity = document.getElementById("intensity");
+  // let competency = document.getElementById("competency");
 
-  sessionId = numSessions + "-" + name + "-" + category;
-  date = new Date();
+  // sessionId = numSessions + "-" + name + "-" + category;
+  // date = new Date();
 
-  let currentSession = new Session(sessionId, name, category, intensity, competency, date);
-  sessions.push(currentSession);
-  numSessions += 1;
+  // let currentSession = new Session(sessionId, name, category, intensity, competency, date);
+  // sessions.push(currentSession);
+  // numSessions += 1;
+  console.log(name);
+  sessionInProgress = true;
+  // console.log(sessions[0].name.value);
+}
 
-  console.log(sessions);
+function changeSessionPage(){
+  if (sessionInProgress == false) {
+    trackerPage.style.display = "none";
+    newSessionPage.style.display = "block";
+  } else {
+    trackerPage.style.display = "block";
+    newSessionPage.style.display = "none";
+  }
 }
 
