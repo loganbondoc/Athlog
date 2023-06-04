@@ -3,6 +3,8 @@ const sessionForm = document.getElementById("session-form");
 const trackerPage = document.getElementById("tracker");
 const newSessionPage = document.getElementById("new-session");
 
+const repCounter = document.getElementById("rep-counter");
+
 var sessions = [];
 var numSessions = 0;
 localStorage.setItem('sessionInProgress', 'false');
@@ -20,25 +22,13 @@ class Session {
         //auto generated attributes
         let exercises = [];
     }
-
-    addExercise(exercise){
-      ;
-    }
 }
 
 class Exercise {
     constructor(name){
         this.name = name;
-        reps = [];
-        rests = [];
-    }
-
-    addReps(reps){
-      ;
-    }
-
-    addRest(rest){
-      ;
+        let reps = [];
+        let rests = [];
     }
 }
 
@@ -72,6 +62,8 @@ function openPage(evt, pageName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+// By default tracker is hidden
 trackerPage.style.display = "none";
 
 // function to switch to from new session form to tracker
@@ -122,6 +114,7 @@ function generateSession() {
   console.log(sessions[0]);
 }
 
+// Hides tracker page based on is a session is in progress or not
 function changeSessionPage(){
   if (localStorage.getItem('sessionInProgress') === 'false') {
     trackerPage.style.display = "none";
@@ -134,23 +127,11 @@ function changeSessionPage(){
   }
 }
 
-// window.addEventListener("DOMContentLoaded", function () {
-//   var isNewSessionHidden = localStorage.getItem("isNewSessionHidden");
-//   if (isNewSessionHidden === "true") {
-//     newSessionPage.style.display = "none";
-//   }
-// });
+repCounter.addEventListener("submit", recordReps());
 
-// function toggleNewSessionPage() {
-//   newSessionPage.style.display =
-//     newSessionPage.style.display === "none" ? "block" : "none";
-
-//   // Store the state of the "new-session" section
-//   localStorage.setItem(
-//     "isNewSessionHidden",
-//     newSessionPage.style.display === "none"
-//   );
-// }
-
-// var newSessionButton = document.querySelector(".tablinks:nth-child(2)");
-// newSessionButton.addEventListener("click", toggleNewSessionPage);
+function recordReps(){
+  // create exercise object
+  // add it to the exercise object
+  // if exercise object is full, make a new one
+  // if all exercises are done change session page back
+}
