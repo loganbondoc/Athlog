@@ -1,19 +1,27 @@
 .muscle-group-wrapper {
     display: flex;
     flex-direction: row;
-    height: 50%;
+    height: 55%;
     justify-content: space-evenly;
 }
 
 .muscle-container {
     width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 37px;
+    margin-top: 4%;
 
     img {
-        width: 15%;
+        object-fit: contain;
+        max-height: 75%;
+        width: auto;
+    }
+
+    figcaption {
+        text-align: center;
     }
 }
