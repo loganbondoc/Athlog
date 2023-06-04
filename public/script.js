@@ -5,8 +5,7 @@ const newSessionPage = document.getElementById("new-session");
 
 var sessions = [];
 var numSessions = 0;
-var sessionId;
-var sessionInProgress = false;
+localStorage.setItem('sessionInProgress', 'false');
 
 // classes
 class Session {
@@ -19,7 +18,7 @@ class Session {
         this.date = date;
         
         //auto generated attributes
-        // exercises = [];
+        let exercises = [];
     }
 
     addExercise(exercise){
@@ -63,6 +62,12 @@ function openPage(evt, pageName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(pageName).style.display = "block";
     evt.currentTarget.className += " active";
+
+    if (pageName != "new-session"){
+      trackerPage.style.display = "none";
+    } else {
+      changeSessionPage();
+    }
   }
 
 // Get the element with id="defaultOpen" and click on it
@@ -73,6 +78,7 @@ trackerPage.style.display = "none";
 sessionForm.addEventListener("submit", generateSession);
 sessionForm.addEventListener("submit", changeSessionPage);
 
+
 function generateSession() {
   // get all attributes from the form
   // generate a unique id
@@ -80,29 +86,71 @@ function generateSession() {
   // add it to an array of all sessions
 
   event.preventDefault();
-  let name = document.getElementById("name").value;
-  // let category = document.getElementById("category");
-  // let intensity = document.getElementById("intensity");
-  // let competency = document.getElementById("competency");
+  var name = document.getElementById("name").value;
+  
+  // getting category
+  let categoryOptions = document.getElementsByName("category");
+  for (let option of categoryOptions){
+    if (option.checked == true){
+      var category = option.value;
+    }
+  }
 
-  // sessionId = numSessions + "-" + name + "-" + category;
-  // date = new Date();
+  // getting intensity
+  let intensityOptions = document.getElementsByName("intensity");
+  for (let option of intensityOptions){
+    if (option.checked == true){
+      var intensity = option.value;
+    }
+  }
 
-  // let currentSession = new Session(sessionId, name, category, intensity, competency, date);
-  // sessions.push(currentSession);
-  // numSessions += 1;
-  console.log(name);
-  sessionInProgress = true;
-  // console.log(sessions[0].name.value);
+  // getting competency
+  let competencyOptions = document.getElementsByName("competency");
+  for (let option of competencyOptions){
+    if (option.checked == true){
+      var competency = option.value;
+    }
+  }
+
+  sessionId = numSessions + "-" + name + "-" + category;
+  date = new Date();
+
+  let currentSession = new Session(sessionId, name, category, intensity, competency, date);
+  sessions.push(currentSession);
+  numSessions += 1;
+  localStorage.setItem('sessionInProgress', 'true');
+  console.log(sessions[0]);
 }
 
 function changeSessionPage(){
-  if (sessionInProgress == false) {
+  if (localStorage.getItem('sessionInProgress') === 'false') {
     trackerPage.style.display = "none";
     newSessionPage.style.display = "block";
-  } else {
+  } else if (localStorage.getItem('sessionInProgress') === 'true') {
     trackerPage.style.display = "block";
     newSessionPage.style.display = "none";
+  } else {
+    console.log("help");
   }
 }
 
+// window.addEventListener("DOMContentLoaded", function () {
+//   var isNewSessionHidden = localStorage.getItem("isNewSessionHidden");
+//   if (isNewSessionHidden === "true") {
+//     newSessionPage.style.display = "none";
+//   }
+// });
+
+// function toggleNewSessionPage() {
+//   newSessionPage.style.display =
+//     newSessionPage.style.display === "none" ? "block" : "none";
+
+//   // Store the state of the "new-session" section
+//   localStorage.setItem(
+//     "isNewSessionHidden",
+//     newSessionPage.style.display === "none"
+//   );
+// }
+
+// var newSessionButton = document.querySelector(".tablinks:nth-child(2)");
+// newSessionButton.addEventListener("click", toggleNewSessionPage);
