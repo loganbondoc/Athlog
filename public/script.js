@@ -8,8 +8,23 @@ const repCounter = document.getElementById("rep-counter");
 var sessions = [];
 var numSessions = 0;
 localStorage.setItem('sessionInProgress', 'false');
+localStorage.setItem('currentExerciseIndex', '0');
+
+var pullArms = ["Bicep Curls", "Hammer Curls", "Lateral Rows", "Lateral Pull-Downs", "Pull Ups", "Rear Delt Fly"];
+var pushArms = ["Bench Press", "Tricep Dips", "Tricep Pushdowns", "Chest Fly", "Lateral Raises", "Shoulder Press"];
+var pushLegs = ["Squats", "Leg Press", "Seated Leg Extensions", "Bulgarian Split Squats", "Hack Squat", "Glute Kickbacks"];
+var pullLegs = ["Romanian Dead Lifts", "Seated Leg Curls", "Nordic Curls", "Hip Thrusts", "Calf Raises", "Conventional Deadlift"];
 
 // classes
+
+class Exercise {
+  constructor(name){
+      this.name = name;
+      this.reps = [];
+      // this.rests = [];
+  }
+}
+
 class Session {
     constructor(id, name, category, intensity, competency, date){
         this.id = id;
@@ -20,15 +35,52 @@ class Session {
         this.date = date;
         
         //auto generated attributes
-        let exercises = [];
-    }
-}
+        this.exercises = [];
 
-class Exercise {
-    constructor(name){
-        this.name = name;
-        let reps = [];
-        let rests = [];
+        switch(this.category){
+          case "Push-Arms":
+            var categoryNames = pushArms;
+            break;
+          case "Pull-Arms":
+            var categoryNames = pullArms;
+            break;
+          case "Push-Legs":
+            var categoryNames = pushLegs;
+            break;
+          case "Pull-Legs":
+            var categoryNames = pullLegs;
+            break;
+        }
+        
+        // creating exericise objects and adding them to exercises array
+        for (let i = 0; i < categoryNames.length; i++){
+          let currentExercise = new Exercise(categoryNames[i]);
+          this.exercises.push(currentExercise);
+        }
+
+        switch(this.competency){
+          case "Beginner":
+            this.sets = 2;
+            break;
+          case "Intermediate":
+            this.sets = 3;
+            break;
+          case "Advanced":
+            this.sets = 4;
+            break;
+        }
+      
+        // switch(currentSession.intensity){
+        //   case "Light":
+        //     var categoryNames = pushArms;
+        //     break;
+        //   case "Moderate":
+        //     var categoryNames = pullArms;
+        //     break;
+        //   case "Intense":
+        //     var categoryNames = pushLegs;
+        //     break;
+        // }
     }
 }
 
@@ -71,7 +123,7 @@ sessionForm.addEventListener("submit", generateSession);
 sessionForm.addEventListener("submit", changeSessionPage);
 
 
-function generateSession() {
+function generateSession(event) {
   // get all attributes from the form
   // generate a unique id
   // create a new session, with the id as its name
@@ -104,8 +156,8 @@ function generateSession() {
     }
   }
 
-  sessionId = numSessions + "-" + name + "-" + category;
-  date = new Date();
+  var sessionId = numSessions + "-" + name + "-" + category;
+  var date = new Date();
 
   let currentSession = new Session(sessionId, name, category, intensity, competency, date);
   sessions.push(currentSession);
@@ -127,11 +179,34 @@ function changeSessionPage(){
   }
 }
 
-repCounter.addEventListener("submit", recordReps());
+repCounter.addEventListener("submit", recordReps);
+// repCounter.addEventListener("submit", checkSession());
 
-function recordReps(){
-  // create exercise object
+// check if session is finished
+// function checkSession(){
+//   // check if exercises is more than 6
+//   // check if each exercise has the amount of sets in it
+//   // if it is changeSessionPage and add to Sessions
+// }
+
+function recordReps(event){
   // add it to the exercise object
   // if exercise object is full, make a new one
   // if all exercises are done change session page back
+
+  event.preventDefault();
+  let repAmount = document.getElementById("reps").value;
+  let currentSession = sessions[sessions.length - 1];
+
+  if (currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))].reps.length >= currentSession.sets){
+    let newIndex = parseInt(localStorage.getItem('currentExerciseIndex'));
+    newIndex += 1;
+    localStorage.setItem('currentExerciseIndex', newIndex.toString());
+    console.log("moving on!");
+  }
+
+  let currentExerciseIndex = currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))];
+  currentExerciseIndex.reps.push(repAmount);
+
+  console.log(currentSession.exercises);
 }
