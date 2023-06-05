@@ -6,9 +6,11 @@ const newSessionPage = document.getElementById("new-session");
 const repCounter = document.getElementById("rep-counter");
 
 var sessions = [];
-var numSessions = 0;
+localStorage.setItem('numSessions', '0');
 localStorage.setItem('sessionInProgress', 'false');
 localStorage.setItem('currentExerciseIndex', '0');
+localStorage.setItem('sessions', '');
+localStorage.setItem('numReps', '0');
 
 var pullArms = ["Bicep Curls", "Hammer Curls", "Lateral Rows", "Lateral Pull-Downs", "Pull Ups", "Rear Delt Fly"];
 var pushArms = ["Bench Press", "Tricep Dips", "Tricep Pushdowns", "Chest Fly", "Lateral Raises", "Shoulder Press"];
@@ -156,12 +158,14 @@ function generateSession(event) {
     }
   }
 
-  var sessionId = numSessions + "-" + name + "-" + category;
+  var sessionId = localStorage.getItem('numSessions') + "-" + name + "-" + category;
   var date = new Date();
 
   let currentSession = new Session(sessionId, name, category, intensity, competency, date);
   sessions.push(currentSession);
-  numSessions += 1;
+  newNumSessions = parseInt(localStorage.getItem('numSessions'));
+  newNumSessions += 1;
+  localStorage.setItem('numSessions', newNumSessions);
   localStorage.setItem('sessionInProgress', 'true');
   console.log(sessions[0]);
 }
@@ -180,14 +184,31 @@ function changeSessionPage(){
 }
 
 repCounter.addEventListener("submit", recordReps);
-// repCounter.addEventListener("submit", checkSession());
+repCounter.addEventListener("submit", checkSession);
 
 // check if session is finished
-// function checkSession(){
-//   // check if exercises is more than 6
-//   // check if each exercise has the amount of sets in it
-//   // if it is changeSessionPage and add to Sessions
-// }
+function checkSession(){
+  // check if exercises is more than 6
+  // check if each exercise has the amount of sets in it
+  // if it is changeSessionPage and add to Sessions
+
+  let currentSession = sessions[sessions.length - 1];
+  if (
+    parseInt(localStorage.getItem('currentExerciseIndex')) == 6 &&
+    parseInt(localStorage.getItem('numReps')) == (currentSession.sets * 6)){
+      console.log("ok im finished");
+      // stringify and add session to local storage
+      sessions.push(currentSession);
+      localStorage.setItem('sessions', JSON.stringify(sessions));
+      
+
+      // reset things to defaults
+      localStorage.setItem('sessionInProgress', 'false');
+      localStorage.setItem('currentExerciseIndex', '0');
+  } else {
+    console.log("heheh not finished yet");
+  }
+}
 
 function recordReps(event){
   // add it to the exercise object
@@ -207,6 +228,10 @@ function recordReps(event){
 
   let currentExerciseIndex = currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))];
   currentExerciseIndex.reps.push(repAmount);
+
+  let newNumReps = parseInt(localStorage.getItem('numReps'));
+  newNumReps += 1;
+  localStorage.setItem('newNumReps', newNumReps.toString());
 
   console.log(currentSession.exercises);
 }
