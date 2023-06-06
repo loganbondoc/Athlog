@@ -243,6 +243,7 @@ function recordReps(event){
   // if all exercises are done change session page back
 
   event.preventDefault();
+
   let repAmount = document.getElementById("reps").value;
   let currentSession = sessions[sessions.length - 1];
 
@@ -274,6 +275,18 @@ function startRest(event){
 
   localStorage.setItem('timerRunning', 'true');
 
+  // turn submit button into stop timer button
+  var startButton = document.getElementById("rest-start");
+  startButton.style.display = "none";
+  var stopButton = document.createElement("button");
+  stopButton.innerHTML = "Stop";
+  repCounter.appendChild(stopButton);
+  stopButton.addEventListener('click', function(){
+    stopButton.remove();
+    startButton.style.display = "block";
+    clearInterval(x);
+  });
+
   // Following code adapted from https://www.w3schools.com/howto/howto_js_countdown.asp
   // Set the date we're counting down to
   let currentSession = sessions[sessions.length - 1];
@@ -303,9 +316,9 @@ function startRest(event){
 
     // If the count down is finished, write some text
     if (distance < 0) {
+      stopButton.remove();
+      startButton.style.display = "block";
       clearInterval(x);
-      document.getElementById("timer-time").innerHTML = "--:--";
-      localStorage.setItem('timerRunning', 'false');
     }
   }, 1000);
   }
