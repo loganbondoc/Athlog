@@ -170,17 +170,19 @@ function generateSession(event) {
   localStorage.setItem('sessionInProgress', 'true');
   console.log(sessions[0]);
 
-  // change table amount based on sets
-
+  // generate rep table
   for(let i = 0; i < 6; i++){
+    
+    // creating headers for exercise names
     var row = document.createElement("tr");
     var header = document.createElement("th");
     header.innerHTML = currentSession.exercises[i].name;
     row.appendChild(header);
     
+    // creating cells for exercises
     for (let j = 0; j < currentSession.sets; j++){
       var cell = document.createElement("td");
-      cell.innerHTML = "yo";
+      cell.classList.add('rep-cell');
       row.appendChild(cell);
     }
 
@@ -224,6 +226,8 @@ function checkSession(){
       // reset things to defaults
       localStorage.setItem('sessionInProgress', 'false');
       localStorage.setItem('currentExerciseIndex', '0');
+
+      // remove table contents
   } else {
     console.log("heheh not finished yet");
   }
@@ -245,12 +249,17 @@ function recordReps(event){
     console.log("moving on!");
   }
 
+  // add to table display
+  var cellArray = document.getElementsByClassName('rep-cell');
+  let cell = cellArray[parseInt(localStorage.getItem('numReps'))];
+  cell.innerHTML = repAmount;
+
   let currentExerciseIndex = currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))];
   currentExerciseIndex.reps.push(repAmount);
 
   let newNumReps = parseInt(localStorage.getItem('numReps'));
   newNumReps += 1;
-  localStorage.setItem('newNumReps', newNumReps.toString());
+  localStorage.setItem('numReps', newNumReps.toString());
 
   console.log(currentSession.exercises);
 }
