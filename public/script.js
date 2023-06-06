@@ -2,10 +2,14 @@
 const sessionForm = document.getElementById("session-form");
 const trackerPage = document.getElementById("tracker");
 const newSessionPage = document.getElementById("new-session");
-const repTable = document.getElementById("rep-table");
-const sessionContainer = document.getElementById("past-session-container");
 
+const repTable = document.getElementById("rep-table");
 const repCounter = document.getElementById("rep-counter");
+
+const sessionContainer = document.getElementById("past-session-container");
+const pastTable = document.getElementById("past-table");
+
+
 
 var sessions = [];
 localStorage.setItem('numSessions', '0');
@@ -360,17 +364,47 @@ function generatePastSessions(){
 
     // creating div to hold everything
     let sessionCell = document.createElement('div');
+    sessionCell.setAttribute('id', sessionsArray[i].id);
     sessionCell.appendChild(nameDateContainer);
     sessionCell.appendChild(category);
 
-    // add event listeners to each to update table
-    sessionCell.addEventListener("click", updateTable);
+    // add event listeners to each to generate table
+    sessionCell.addEventListener("click", function(){
+      // clear table if there is any previous content filled
+      while (pastTable.hasChildNodes()){
+        pastTable.removeChild(pastTable.firstChild);
+      }
+
+      // look for session with id that matches clicked div
+      for(let j = 0; j < sessions.length; j++){
+        if(this.id == sessions[j].id){
+          console.log("found matching!");
+          var selectedSession = sessions[j];
+        }
+      }
+
+      // displaying session in table format
+      for(let k = 0; k < selectedSession.exercises.length; k++){
+        
+        // creating headers for exercise names
+        var row = document.createElement("tr");
+        var header = document.createElement("th");
+        header.innerHTML = selectedSession.exercises[k].name;
+        row.appendChild(header);
+        
+        // creating cells for exercises
+        for (let l = 0; l < selectedSession.sets; l++){
+          var cell = document.createElement("td");
+          cell.classList.add('rep-cell');
+          cell.innerHTML= selectedSession.exercises[k].reps[l];
+          row.appendChild(cell);
+        }
+    
+        pastTable.appendChild(row);
+      }
+    });
 
     // append cell to container
     sessionContainer.appendChild(sessionCell);
   }
-}
-
-function updateTable(){
-  
 }
