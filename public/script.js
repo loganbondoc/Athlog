@@ -2,6 +2,7 @@
 const sessionForm = document.getElementById("session-form");
 const trackerPage = document.getElementById("tracker");
 const newSessionPage = document.getElementById("new-session");
+const repTable = document.getElementById("rep-table");
 
 const repCounter = document.getElementById("rep-counter");
 
@@ -168,6 +169,24 @@ function generateSession(event) {
   localStorage.setItem('numSessions', newNumSessions);
   localStorage.setItem('sessionInProgress', 'true');
   console.log(sessions[0]);
+
+  // change table amount based on sets
+
+  for(let i = 0; i < 6; i++){
+    var row = document.createElement("tr");
+    var header = document.createElement("th");
+    header.innerHTML = currentSession.exercises[i].name;
+    row.appendChild(header);
+    
+    for (let j = 0; j < currentSession.sets; j++){
+      var cell = document.createElement("td");
+      cell.innerHTML = "yo";
+      row.appendChild(cell);
+    }
+
+    repTable.appendChild(row);
+  }
+
 }
 
 // Hides tracker page based on is a session is in progress or not
