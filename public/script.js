@@ -3,6 +3,7 @@ const sessionForm = document.getElementById("session-form");
 const trackerPage = document.getElementById("tracker");
 const newSessionPage = document.getElementById("new-session");
 const repTable = document.getElementById("rep-table");
+const sessionContainer = document.getElementById("past-session-container");
 
 const repCounter = document.getElementById("rep-counter");
 
@@ -20,7 +21,6 @@ var pushLegs = ["Squats", "Leg Press", "Seated Leg Extensions", "Bulgarian Split
 var pullLegs = ["Romanian Dead Lifts", "Seated Leg Curls", "Nordic Curls", "Hip Thrusts", "Calf Raises", "Conventional Deadlift"];
 
 // classes
-
 class Exercise {
   constructor(name){
       this.name = name;
@@ -219,19 +219,25 @@ function checkSession(){
 
   let currentSession = sessions[sessions.length - 1];
   if (
-    parseInt(localStorage.getItem('currentExerciseIndex')) == 6 &&
-    parseInt(localStorage.getItem('numReps')) == (currentSession.sets * 6)){
+    parseInt(localStorage.getItem('currentExerciseIndex')) >= 5 &&
+    parseInt(localStorage.getItem('numReps')) >= (currentSession.sets * 6)){
       console.log("ok im finished");
       // stringify and add session to local storage
-      sessions.push(currentSession);
       localStorage.setItem('sessions', JSON.stringify(sessions));
-      
 
       // reset things to defaults
       localStorage.setItem('sessionInProgress', 'false');
       localStorage.setItem('currentExerciseIndex', '0');
+      localStorage.setItem('numReps', '0');
 
       // remove table contents
+      while (repTable.hasChildNodes()){
+        repTable.removeChild(repTable.firstChild);
+      }
+
+      // changing back to new session page
+      changeSessionPage();
+
   } else {
     console.log("heheh not finished yet");
   }
@@ -322,3 +328,49 @@ function startRest(event){
     }
   }, 1000);
   }
+
+const pastSessionsNav = document.getElementById("past-sessions-nav");
+pastSessionsNav.addEventListener("click", generatePastSessions);
+
+function generatePastSessions(){
+  
+  // if opened before, clear it
+  while (sessionContainer.hasChildNodes()){
+    sessionContainer.removeChild(sessionContainer.firstChild);
+  }
+  
+  // generate all past sessions
+  sessionsArray = JSON.parse(localStorage.getItem('sessions'));
+  
+  for (let i = 0; i < sessionsArray.length; i++){
+    // creating text nodes for displayed text
+    let nameNode = document.createTextNode(sessionsArray[i].name);
+    let dateNode = document.createTextNode(sessionsArray[i].date);
+    let categoryNode = document.createTextNode(sessionsArray[i].category);
+
+    // appending text nodes
+    let name = document.createElement('h3').appendChild(nameNode);
+    let date = document.createElement('h3').appendChild(dateNode);
+    let category = document.createElement('h2').appendChild(categoryNode);
+
+    // creating div to hold name and date text for styling
+    let nameDateContainer = document.createElement('div');
+    nameDateContainer.appendChild(name);
+    nameDateContainer.appendChild(date);
+
+    // creating div to hold everything
+    let sessionCell = document.createElement('div');
+    sessionCell.appendChild(nameDateContainer);
+    sessionCell.appendChild(category);
+
+    // add event listeners to each to update table
+    sessionCell.addEventListener("click", updateTable);
+
+    // append cell to container
+    sessionContainer.appendChild(sessionCell);
+  }
+}
+
+function updateTable(){
+  
+}
