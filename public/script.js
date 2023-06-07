@@ -1,24 +1,29 @@
-// variables for forms
+// variables for new session form page
 const sessionForm = document.getElementById("session-form");
-const trackerPage = document.getElementById("tracker");
 const newSessionPage = document.getElementById("new-session");
 
+// elements for tracking page
 const repTable = document.getElementById("rep-table");
 const repCounter = document.getElementById("rep-counter");
 
+// elements for past sessions page
+const trackerPage = document.getElementById("tracker");
 const sessionContainer = document.getElementById("past-session-container");
 const pastTable = document.getElementById("past-table");
+const pastSessionsNav = document.getElementById("past-sessions-nav");
 
-
-
+// For storing sessions
 var sessions = [];
-localStorage.setItem('numSessions', '0');
-localStorage.setItem('sessionInProgress', 'false');
-localStorage.setItem('timerRunning', 'false');
-localStorage.setItem('currentExerciseIndex', '0');
-localStorage.setItem('sessions', '');
-localStorage.setItem('numReps', '0');
 
+// setting local storage default values
+localStorage.setItem('sessions', ''); // for storing all sessions
+localStorage.setItem('numSessions', '0'); // tracking number of sessions
+localStorage.setItem('sessionInProgress', 'false'); // checks if currently recording session
+localStorage.setItem('timerRunning', 'false'); // checks if taking rest break
+localStorage.setItem('currentExerciseIndex', '0'); // tracks progress through exercises
+localStorage.setItem('numReps', '0'); // for tracking exercise completion
+
+// list of exercise names based on category
 var pullArms = ["Bicep Curls", "Hammer Curls", "Lateral Rows", "Lateral Pull-Downs", "Pull Ups", "Rear Delt Fly"];
 var pushArms = ["Bench Press", "Tricep Dips", "Tricep Pushdowns", "Chest Fly", "Lateral Raises", "Shoulder Press"];
 var pushLegs = ["Squats", "Leg Press", "Seated Leg Extensions", "Bulgarian Split Squats", "Hack Squat", "Glute Kickbacks"];
@@ -29,7 +34,6 @@ class Exercise {
   constructor(name){
       this.name = name;
       this.reps = [];
-      // this.rests = [];
   }
 }
 
@@ -66,6 +70,7 @@ class Session {
           this.exercises.push(currentExercise);
         }
 
+        // generate sets based on competency
         switch(this.competency){
           case "Beginner":
             this.sets = 2;
@@ -77,7 +82,8 @@ class Session {
             this.sets = 4;
             break;
         }
-      
+        
+        // generate rest time based on intensity
         switch(this.intensity){
           case "Light":
             this.restMinutes = 4;
@@ -93,6 +99,7 @@ class Session {
 }
 
 // navbar code adapted from: https://www.w3schools.com/howto/howto_js_tabs.asp
+// changes opened page when navbar is clicked
 function openPage(evt, pageName) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -120,23 +127,8 @@ function openPage(evt, pageName) {
     }
   }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-// By default tracker is hidden
-trackerPage.style.display = "none";
-
-// function to switch to from new session form to tracker
-sessionForm.addEventListener("submit", generateSession);
-sessionForm.addEventListener("submit", changeSessionPage);
-
-
+// creates a session object with inputted information, then generates table content
 function generateSession(event) {
-  // get all attributes from the form
-  // generate a unique id
-  // create a new session, with the id as its name
-  // add it to an array of all sessions
-
   event.preventDefault();
   var name = document.getElementById("name").value;
   
@@ -164,11 +156,15 @@ function generateSession(event) {
     }
   }
 
+  // auto generated attributes
   var sessionId = localStorage.getItem('numSessions') + "-" + name + "-" + category;
   var date = new Date();
 
+  // creating session and adding to array of sessions
   let currentSession = new Session(sessionId, name, category, intensity, competency, date);
   sessions.push(currentSession);
+
+  // adding another session to local storage
   newNumSessions = parseInt(localStorage.getItem('numSessions'));
   newNumSessions += 1;
   localStorage.setItem('numSessions', newNumSessions);
@@ -198,7 +194,7 @@ function generateSession(event) {
   document.getElementById("timer-time").innerHTML = "0" + currentSession.restMinutes + ":00";
 }
 
-// Hides tracker page based on is a session is in progress or not
+// Hides tracker page based on if a session is in progress or not
 function changeSessionPage(){
   if (localStorage.getItem('sessionInProgress') === 'false') {
     trackerPage.style.display = "none";
@@ -211,17 +207,13 @@ function changeSessionPage(){
   }
 }
 
-repCounter.addEventListener("submit", recordReps);
-repCounter.addEventListener("submit", checkSession);
-repCounter.addEventListener("submit", startRest);
-
-// check if session is finished
+// checks if session is finished
 function checkSession(){
-  // check if exercises is more than 6
-  // check if each exercise has the amount of sets in it
-  // if it is changeSessionPage and add to Sessions
-
+  
+  // using session that is currently in progress
   let currentSession = sessions[sessions.length - 1];
+  
+  // if session is complete
   if (
     parseInt(localStorage.getItem('currentExerciseIndex')) >= 5 &&
     parseInt(localStorage.getItem('numReps')) >= (currentSession.sets * 6)){
@@ -229,7 +221,7 @@ function checkSession(){
       // stringify and add session to local storage
       localStorage.setItem('sessions', JSON.stringify(sessions));
 
-      // reset things to defaults
+      // reset local storage items to defaults
       localStorage.setItem('sessionInProgress', 'false');
       localStorage.setItem('currentExerciseIndex', '0');
       localStorage.setItem('numReps', '0');
@@ -241,22 +233,18 @@ function checkSession(){
 
       // changing back to new session page
       changeSessionPage();
-
-  } else {
-    console.log("heheh not finished yet");
   }
 }
 
+// records reps to session object and display on page table
 function recordReps(event){
-  // add it to the exercise object
-  // if exercise object is full, make a new one
-  // if all exercises are done change session page back
 
   event.preventDefault();
-
+  // using submitted rep value
   let repAmount = document.getElementById("reps").value;
   let currentSession = sessions[sessions.length - 1];
 
+  // if sets for exercise is completed, go to next exercise
   if (currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))].reps.length >= currentSession.sets){
     let newIndex = parseInt(localStorage.getItem('currentExerciseIndex'));
     newIndex += 1;
@@ -269,14 +257,14 @@ function recordReps(event){
   let cell = cellArray[parseInt(localStorage.getItem('numReps'))];
   cell.innerHTML = repAmount;
 
+  // add rep amount to session object
   let currentExerciseIndex = currentSession.exercises[parseInt(localStorage.getItem('currentExerciseIndex'))];
   currentExerciseIndex.reps.push(repAmount);
 
+  // change number of reps in local storage
   let newNumReps = parseInt(localStorage.getItem('numReps'));
   newNumReps += 1;
   localStorage.setItem('numReps', newNumReps.toString());
-
-  console.log(currentSession.exercises);
 }
 
 // start rest timer countdown
@@ -291,6 +279,8 @@ function startRest(event){
   var stopButton = document.createElement("button");
   stopButton.innerHTML = "Stop";
   repCounter.appendChild(stopButton);
+
+  // if stop button is pressed, stop rest timer
   stopButton.addEventListener('click', function(){
     stopButton.remove();
     startButton.style.display = "block";
@@ -333,20 +323,20 @@ function startRest(event){
   }, 1000);
   }
 
-const pastSessionsNav = document.getElementById("past-sessions-nav");
-pastSessionsNav.addEventListener("click", generatePastSessions);
-
+// utilising sessions from local storage, generates past session page
 function generatePastSessions(){
   
-  // if opened before, clear it
+  // if past sessions has already been opened, clear it
   while (sessionContainer.hasChildNodes()){
     sessionContainer.removeChild(sessionContainer.firstChild);
   }
   
-  // generate all past sessions
+  // getting past sessions from local storage
   sessionsArray = JSON.parse(localStorage.getItem('sessions'));
   
+  // loop through all past sessions and generate a cell for each
   for (let i = 0; i < sessionsArray.length; i++){
+    
     // creating text nodes for displayed text
     let nameNode = document.createTextNode(sessionsArray[i].name);
     let categoryNode = document.createTextNode(sessionsArray[i].category);
@@ -354,7 +344,6 @@ function generatePastSessions(){
     
     // formatting date node
     let sessionDate = sessionsArray[i].date;
-    console.log(sessionDate);
     let dateFormat = sessionDate.slice(0, 10) + " - " + sessionDate.slice(11, 19);
     let dateNode = document.createTextNode(dateFormat);
     
@@ -393,7 +382,6 @@ function generatePastSessions(){
       // look for session with id that matches clicked div
       for(let j = 0; j < sessions.length; j++){
         if(this.id == sessions[j].id){
-          console.log("found matching!");
           var selectedSession = sessions[j];
         }
       }
@@ -423,3 +411,21 @@ function generatePastSessions(){
     sessionContainer.appendChild(sessionCell);
   }
 }
+
+// when opening website, home is opened by default
+document.getElementById("defaultOpen").click();
+
+// By default tracker is hidden
+trackerPage.style.display = "none";
+
+// executed when new session form is submitted
+sessionForm.addEventListener("submit", generateSession);
+sessionForm.addEventListener("submit", changeSessionPage);
+
+// executed when submit and rest button is clicked
+repCounter.addEventListener("submit", recordReps);
+repCounter.addEventListener("submit", checkSession);
+repCounter.addEventListener("submit", startRest);
+
+// generate past sessions when changing to past session page
+pastSessionsNav.addEventListener("click", generatePastSessions);
