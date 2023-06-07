@@ -6,6 +6,9 @@ Athlog, is a web application designed to generate workout programs and track per
 - To create a web application accessible for athletes of all technological proficiencies and ages
 - To generate workout programs that accommodate for users with varying goals and physiological proficiencies
 
+
+
+
 ## Running this application
 The program is run on a basic node server utilising the express framework, sass for styling and parcel for hot reloading.
 
@@ -20,6 +23,9 @@ The application is responsively designed, and will change its appearance when th
 ### If sass is not installed
 - Install it by running ```npm install sass``` in the terminal
 
+
+
+
 ## The development process of Athlog
 ### Through developing Athlog, I was able to significantly build:
 - My confidence in object oriented programming, as despite having a small amount of experience in it through other languages, gaining the experience of using objects and being able to store them in local storage was particularly useful.
@@ -27,6 +33,8 @@ The application is responsively designed, and will change its appearance when th
 
 ### However, through the development process I came across various challenges:
 - When developing the New Session Form, I spent an *unnecessarily* large amount of time attempting to find a way to dynamically assign variables to objects using template literal strings, as a means to retrieve specific objects later. However, the tutor recommended against this method and instead advised the use of a loop that would search for certain objects based on their attributes. Through this, I utilised the **id** attribute of the sessions objects to later retrieve them in the past sessions page.
+
+
 
 
 ## Future implementations
