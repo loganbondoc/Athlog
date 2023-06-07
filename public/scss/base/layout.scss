@@ -41,6 +41,12 @@ header {
   margin-right: 20%;
 }
 
+.rest-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #timer-container {
   display: flex;
   justify-content: center;
