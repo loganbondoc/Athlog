@@ -33,6 +33,7 @@ The application is responsively designed, and will change its appearance when th
 
 ### However, through the development process I came across various challenges:
 - When developing the New Session Form, I spent an *unnecessarily* large amount of time attempting to find a way to dynamically assign variables to objects using template literal strings, as a means to retrieve specific objects later. However, the tutor recommended against this method and instead advised the use of a loop that would search for certain objects based on their attributes. Through this, I utilised the **id** attribute of the sessions objects to later retrieve them in the past sessions page.
+- Within the original plans for the tracking page, I originally wanted to include plus and minus buttons on the number input, that would allow users to either input a number using the buttons or through typing. This however was unable to be implemented, as the arrows that are included within a number input by default are unable to be styled to that extent and the idea had to be scrapped.
 
 
 
