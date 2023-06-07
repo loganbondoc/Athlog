@@ -6,13 +6,79 @@ body {
     grid-auto-flow: row;
     grid-template-areas:
       ". .";
-  }
+}
 
-  .tabcontent {
+.tabcontent {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+header {
+    margin-bottom: 5%;
+}
+
+
+// tracker
+.table-display {
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-auto-rows: 1fr; 
+  grid-template-columns: 0.9fr 1.6fr; 
+  gap: 0px 0px; 
+}
+
+#timer-container, #table-container, #past-session-container, #past-table {
+  height: 200%;
+}
+
+#timer{
+  height: 50%;
+}
+
+#rep-table, #past-table {
+  width: 100%;
+  height: 100%;
+  margin-right: 20%;
+}
+
+#timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+  #timer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 75%;
+      border-radius: 37px;
+
+      #rep-counter {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          input[type=submit], button{
+              border: none;
+              border-radius: 37px;
+              width: 150px;
+              height: 35px;
+          }
+      }
+  }
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#tracker {
+  header {
     margin-top: 5%;
     margin-left: 5%;
   }
-
-  header {
-    margin-bottom: 5%;
-  }
+}

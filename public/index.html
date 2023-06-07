@@ -150,16 +150,21 @@
         <header>
             <h1>Go for it name!</h1>
         </header>
-        <div id = "timer">
-            <form id="rep-counter">
-                <label for="reps">Reps</label><br> 
-                <input type="number" id="reps" name="reps" required><br>
-                <input type="submit" id = "rest-start" value="Submit & Rest">
-            </form>
-            <h1 id = "timer-time"> AAA </h1>
-        </div>
-        <div>
-            <table id = "rep-table"></table>
+        <div class = "table-display">
+            <div id = "timer-container">
+                <div id = "timer">
+                    <form id="rep-counter">
+                        <label for="reps">Reps</label><br> 
+                        <input type="number" id="reps" name="reps" value = "0" required><br>
+                        <input type="submit" id = "rest-start" value="Submit & Rest">
+                    </form>
+                    <h2 id = "rest-timer"> Rest Timer </h2>
+                    <h1 id = "timer-time"> AAA </h1>
+                </div>
+            </div>
+            <div class = "table-container">
+                <table id = "rep-table"></table>
+            </div>
         </div>
     </section>
     
@@ -167,10 +172,13 @@
         <header>
             <h1>Past Sessions</h1>
         </header>
-        <div id = "past-session-container"></div>
-        <div>
-            <table id = "past-table"></table>
+        <div class = "table-display">
+            <div id = "past-session-container"></div>
+            <div class = "table-container">
+                <table id = "past-table"></table>
+            </div>
         </div>
+        
     </section>
 
     <script src="script.js"></script>

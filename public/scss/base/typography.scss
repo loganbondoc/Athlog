@@ -1,6 +1,7 @@
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
+$font-weight-regular: 400;
 
 h1, h2, h3, h4 {
     font-family: 'saira';
@@ -14,7 +15,7 @@ h1 {
 }
 
 h2 {
-    font-size: 37px;
+    font-size: 25px;
 }
 
 h3 {
@@ -54,6 +55,11 @@ h3 {
         font-weight: $font-weight-medium;
         font-size: 16px;
     }
+
+    #name {
+        font-family: 'saira';
+        font-weight: $font-weight-regular;
+    }
 }
 
 .submit-container {
@@ -62,4 +68,43 @@ h3 {
         font-weight: $font-weight-medium;
         font-size: 16px;
     }
+}
+
+// tracker styling
+#rep-counter {
+    label {
+        font-family: 'saira';
+        font-weight: $font-weight-semibold;
+        font-size: 36px;
+    }
+    input[type=submit], button{
+        font-family: 'saira';
+        font-weight: $font-weight-medium;
+        font-size: 16px;
+    }
+}
+
+th {
+    font-family: 'saira';
+    font-weight: $font-weight-regular;
+    font-size: 16px;
+}
+
+td {
+    font-family: 'saira';
+    font-weight: $font-weight-regular;
+    font-size: 25px;
+}
+
+
+
+#reps {
+    font-family: 'saira';
+    font-weight: $font-weight-regular;
+    font-size: 36px;
+}
+
+#rest-timer {
+    font-weight: $font-weight-medium;
+    margin-top: 20%;
 }

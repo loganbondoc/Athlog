@@ -1,3 +1,5 @@
+// new session form styling
+
 input[type=text] {
     border-radius: 37px;
     padding: 5px 10px;
@@ -78,4 +80,13 @@ input[type=text] {
             color: white;
         }
     }
+}
+
+
+// rep tracker styling
+#reps {
+    text-align: center;
+    border-radius: 37px;
+    border: none;
+    width: 50%;
 }
