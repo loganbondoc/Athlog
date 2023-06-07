@@ -77,34 +77,72 @@
         <form id = "session-form">
             <label for="name">Name:</label><br> 
             <input type="text" id="name" name="name" required><br>
-            
+
+
+            <!-- code can be attributed to: https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons -->
             <h3>What muscle group are you working today?</h3>
-            <input type="radio" id="push-arms" name="category" value="Push-Arms" required>
-            <label for="push-arms">Push-Arms</label><br>
-            <input type="radio" id="pull-arms" name="category" value="Pull-Arms">
-            <label for="pull-arms">Pull-Arms</label><br>
-            <input type="radio" id="push-legs" name="category" value="Push-Legs">
-            <label for="push-legs">Push-Legs</label><br>
-            <input type="radio" id="pull-legs" name="category" value="Pull-Legs">
-            <label for="pull-legs">Pull-Legs</label><br>
+            <div class = "category-container">
+                <label>
+                    <input type="radio" id="push-arms" name="category" value="Push-Arms" required>
+                    <img src = "images/Push-Arms-White.svg" alt = "Push-Arms">
+                    <h3>Push-Arms</h3>
+                </label>
+                <label>
+                    <input type="radio" id="pull-arms" name="category" value="Pull-Arms">
+                    <img src = "images/Pull-Arms-White.svg" alt = "Pull-Arms">
+                    <h3>Pull-Arms</h3>
+                </label>
+                <label>
+                    <input type="radio" id="push-legs" name="category" value="Push-Legs">
+                    <img src = "images/Push-Legs-White.svg" alt = "Push-Legs">
+                    <h3>Push-Legs</h3>
+                </label>
+                <label>
+                    <input type="radio" id="pull-legs" name="category" value="Pull-Legs">
+                    <img src = "images/Pull-Legs-White.svg" alt = "Pull-Legs">
+                    <h3>Pull-Legs</h3>
+                </label>
+            </div>
 
             <h3>Intensity</h3>
-            <input type="radio" id="light" name="intensity" value="Light" required>
-            <label for="light">Light</label><br>
-            <input type="radio" id="moderate" name="intensity" value="Moderate">
-            <label for="moderate">Moderate</label><br>
-            <input type="radio" id="intense" name="intensity" value="Intense">
-            <label for="intense">Intense</label><br>
+            <div class = "input-container">
+                <div class = "input-cell">
+                    <input type="radio" id="light" name="intensity" value="Light" required>
+                    <label for="light">Light</label><br>
+                </div>
+                <div class = "input-cell">
+                    <input type="radio" id="moderate" name="intensity" value="Moderate">
+                    <label for="moderate">Moderate</label><br>
+                </div>
+                <div class = "input-cell">
+                    <input type="radio" id="intense" name="intensity" value="Intense">
+                    <label for="intense">Intense</label><br>             
+                </div>
+            </div>
+            
 
             <h3>What is your competency level for this muscle group?</h3>
-            <input type="radio" id="beginner" name="competency" value="Beginner" required>
-            <label for="beginner">Beginner</label><br>
-            <input type="radio" id="intermediate" name="competency" value="Intermediate">
-            <label for="intermediate">Intermediate</label><br>
-            <input type="radio" id="advanced" name="competency" value="Advanced">
-            <label for="advanced">Advanced</label><br>
-
-            <input type="submit" value="Submit">
+            <div class = "final-form-container">
+                <div class = "input-container">
+                    <div class = "input-cell">
+                        <input type="radio" id="beginner" name="competency" value="Beginner" required>
+                        <label for="beginner">Beginner</label><br>
+                    </div>
+                    <div class = "input-cell">
+                        <input type="radio" id="intermediate" name="competency" value="Intermediate">
+                        <label for="intermediate">Intermediate</label><br>
+                    </div>
+                    <div class = "input-cell">
+                        <input type="radio" id="advanced" name="competency" value="Advanced">
+                        <label for="advanced">Advanced</label><br>
+                    </div> 
+                </div>
+                
+                <div class = "submit-container">
+                    <input type="submit" value="Submit">
+                </div>
+            </div>
+            
         </form>
     </section>
 

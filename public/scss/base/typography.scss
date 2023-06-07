@@ -46,3 +46,20 @@ h3 {
     }
 
 }
+
+// new session form styling
+#session-form{
+    label{
+        font-family: 'saira';
+        font-weight: $font-weight-medium;
+        font-size: 16px;
+    }
+}
+
+.submit-container {
+    input[type=submit]{
+        font-family: 'saira';
+        font-weight: $font-weight-medium;
+        font-size: 16px;
+    }
+}
