@@ -350,28 +350,38 @@ function generatePastSessions(){
     // creating text nodes for displayed text
     let nameNode = document.createTextNode(sessionsArray[i].name);
     let categoryNode = document.createTextNode(sessionsArray[i].category);
+    let hyphenNode = document.createTextNode(" - ");
     
     // formatting date node
     let sessionDate = sessionsArray[i].date;
     console.log(sessionDate);
-    let dateFormat = sessionDate.slice(0, 10) + " " + sessionDate.slice(11, 19);
+    let dateFormat = sessionDate.slice(0, 10) + " - " + sessionDate.slice(11, 19);
     let dateNode = document.createTextNode(dateFormat);
     
     // appending text nodes
     let name = document.createElement('h3').appendChild(nameNode);
     let date = document.createElement('h3').appendChild(dateNode);
+    let hyphen = document.createElement('h3').appendChild(hyphenNode);
     let category = document.createElement('h2').appendChild(categoryNode);
 
     // creating div to hold name and date text for styling
     let nameDateContainer = document.createElement('div');
     nameDateContainer.appendChild(name);
+    nameDateContainer.appendChild(hyphen);
     nameDateContainer.appendChild(date);
+    nameDateContainer.classList.add('name-date-container');
+
+    // creating div to hold category
+    let categoryContainer = document.createElement('div');
+    categoryContainer.appendChild(category);
+    categoryContainer.classList.add('category-container');
 
     // creating div to hold everything
     let sessionCell = document.createElement('div');
     sessionCell.setAttribute('id', sessionsArray[i].id);
     sessionCell.appendChild(nameDateContainer);
-    sessionCell.appendChild(category);
+    sessionCell.appendChild(categoryContainer);
+    sessionCell.classList.add('session-cell');
 
     // add event listeners to each to generate table
     sessionCell.addEventListener("click", function(){

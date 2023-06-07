@@ -108,3 +108,21 @@ td {
     font-weight: $font-weight-medium;
     margin-top: 20%;
 }
+
+// past sessions styling
+.session-cell {
+    font-family: 'saira';
+    
+    .nameDateContainer {
+        text{
+            font-weight: $font-weight-medium;
+        }
+    }
+
+    .categoryContainer {
+        text{
+            font-weight: $font-weight-semibold;
+        }
+    }
+}
+
