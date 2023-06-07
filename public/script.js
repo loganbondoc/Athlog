@@ -349,9 +349,14 @@ function generatePastSessions(){
   for (let i = 0; i < sessionsArray.length; i++){
     // creating text nodes for displayed text
     let nameNode = document.createTextNode(sessionsArray[i].name);
-    let dateNode = document.createTextNode(sessionsArray[i].date);
     let categoryNode = document.createTextNode(sessionsArray[i].category);
-
+    
+    // formatting date node
+    let sessionDate = sessionsArray[i].date;
+    console.log(sessionDate);
+    let dateFormat = sessionDate.slice(0, 10) + " " + sessionDate.slice(11, 19);
+    let dateNode = document.createTextNode(dateFormat);
+    
     // appending text nodes
     let name = document.createElement('h3').appendChild(nameNode);
     let date = document.createElement('h3').appendChild(dateNode);
