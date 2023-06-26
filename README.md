@@ -1,5 +1,5 @@
 # Athlog
-Athlog, is a web application designed to generate workout programs and track performance by logging an individual’s repetitions, workout dates and rest times.
+Athlog, is a web application designed to generate workout programs and track performance by logging an individual’s repetitions, workout dates and rest times. This was created as a part of an assessment for the DECO2017 unit, which taught the basics of web development utilising HTML, CSS, Javascript and Node.js.
 
 ### The key user needs of the application are to:
 - To provide a streamlined way for users to review their past workout performance
